@@ -1,11 +1,18 @@
 {
   "clientes": [
     {
-      "nombre": "Juan NUEVO!",
-      "email": "correo2@correo.com",
-      "telefono": "12",
-      "empresa": "12212",
-      "id": 26
+      "nombre": "Sebas Hernandez",
+      "email": "rcuartas@unal.edu.co",
+      "telefono": "31386552266",
+      "empresa": "La casa del buen bareto",
+      "id": 27
+    },
+    {
+      "nombre": "Sebas Hernandez",
+      "email": "rcuartas@unal.edu.co",
+      "telefono": "d",
+      "empresa": "La casa del buen ",
+      "id": 28
     }
   ]
 }
