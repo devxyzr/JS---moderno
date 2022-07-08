@@ -1,0 +1,32 @@
+extends ./layout/index
+
+block contenido 
+    main.container.mt-5 
+        .row 
+            .col-md-5 
+                img(src="img/nosotros.jpg", alt="imagen sobre nosotros", class="img-fluid")
+            .col-md-7
+                h1 #{pagina}
+                blockquote  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consequat elit at faucibus consectetur. Donec dignissim tellus nec ornare blandit. Maecenas nunc nisi, porta ac est eu, tristique aliquet urna.
+
+                p non fermentum est. Nullam vel lectus turpis. Duis ullamcorper dui ante, id sodales eros ullamcorper vel. Nam bibendum mauris ut felis condimentum vehicula. Suspendisse lacinia, metus eget ornare mollis, lectus elit venenatis elit, eu tempor elit turpis eget risus.
+
+                p finibus est in erat mattis rhoncus. Vivamus est tellus, vehicula ut mauris eu, tempor porttitor enim. 
+
+    .listado-iconos 
+        .container.mt-5.py-5.text-center 
+            .row 
+                .col-md-4 
+                    img(src="img/icono_seguridad.svg", alt="icono seguridad", class="img-fluid mb-4")
+                    h2.mb-4 Seguridad 
+                    p Nam bibendum mauris ut felis condimentum vehicula. Suspendisse lacinia, metus eget ornare mollis, lectus elit venenatis elit, eu tempor elit turpis eget risus.
+                
+                .col-md-4 
+                    img(src="img/icono_destinos.svg", alt="icono destinos", class="img-fluid mb-4")
+                    h2.mb-4 Mejores destinos 
+                    p Nam bibendum mauris ut felis condimentum vehicula. Suspendisse lacinia, metus eget ornare mollis, lectus elit venenatis elit, eu tempor elit turpis eget risus.
+                
+                .col-md-4 
+                    img(src="img/icono_precios.svg", alt="icono precios", class="img-fluid mb-4")
+                    h2.mb-4 Mejores precios
+                    p Nam bibendum mauris ut felis condimentum vehicula. Suspendisse lacinia, metus eget ornare mollis, lectus elit venenatis elit, eu tempor elit turpis eget risus.

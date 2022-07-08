@@ -1,14 +1,29 @@
 import express from "express";
+import router from "./routes/index.js";
 
 const app = express();
 
 // Definir puerto
 const port = process.env.PORT || 4000;
 
-app.get("/", (req, res) => {
-  //req - lo que enviamos : res - lo que express nos responde
-  res.send("Hola mundo");
+// Habilitar PUG
+app.set("view engine", "pug");
+
+//Obtner año actula
+app.use((req, res, next) => {
+  const year = new Date();
+
+  res.locals.actualYear = year.getFullYear();
+  res.locals.nombresito = "Agencia de Viajes";
+
+  next();
 });
+
+//Definir la carpeta publica
+app.use(express.static("public"));
+
+// Agregar router
+app.use("/", router);
 
 app.listen(port, () => {
   console.log(`El servidor esta funcionando en el puerto ${port}`);
