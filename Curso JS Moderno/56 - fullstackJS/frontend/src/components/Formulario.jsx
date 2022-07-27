@@ -1,23 +1,70 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Alerta from "./Alerta";
+import usePacientes from "../../../backend/hooks/usePacientes";
 
 export const Formulario = () => {
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
-  const [fecha, setFecha] = useState(Date.now());
+  const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
+  const [id, setId] = useState(null);
 
   const [alerta, setAlerta] = useState({});
 
+  const { guardarPaciente, paciente } = usePacientes();
+
+  useEffect(() => {
+    if (paciente?.nombre) {
+      setNombre(paciente.nombre);
+      setPropietario(paciente.propietario);
+      setEmail(paciente.email);
+      setFecha(paciente.fecha);
+      setSintomas(paciente.sintomas);
+      setId(paciente._id);
+    }
+  }, [paciente]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validar el formulario
+
+    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+      setAlerta({ msg: "Todos los campos son obligatorios", error: true });
+      return;
+    }
+
+    guardarPaciente({ nombre, propietario, email, fecha, sintomas, id });
+    setAlerta({
+      msg: "Guardado Correctamente",
+    });
+
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
+    setId("");
+  };
+
+  const { msg } = alerta;
+
   return (
     <>
-      <p className="text-lg text-center mb-10">
-        Añade tus Pacientes y{" "}
+      <h2 className="font-black text-3xl text-center">
+        Administrador de Pacientes
+      </h2>
+      <p className="text-xl mt-5 mb-10 text-center">
+        Añade tus pacientes {""}
         <span className="text-indigo-600 font-bold">Administralos</span>
       </p>
 
-      <form className="bg-white py-10 px-5 mb-10 lg:mb-0 shadow-md rounded-md">
-        <div class="mb-5">
+      <form
+        className="bg-white py-10 px-5 mb-10 lg:mb-5 shadow-md rounded-md"
+        onSubmit={handleSubmit}
+      >
+        <div className="mb-5">
           <label htmlFor="nombre" className="text-gray-700 uppercase font-bold">
             Nombre Mascota{" "}
           </label>
@@ -93,9 +140,10 @@ export const Formulario = () => {
         <input
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-800 cursor-pointer transition-colors"
-          value="Agregar Paciente"
+          value={id ? "Guardar Cambios" : "Agregar Paciente"}
         />
       </form>
+      {msg && <Alerta alerta={alerta} />}
     </>
   );
 };

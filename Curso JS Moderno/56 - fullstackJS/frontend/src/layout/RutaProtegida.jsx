@@ -6,13 +6,13 @@ import Footer from "../components/Footer";
 const RutaProtegida = () => {
   const { auth, cargando } = useAuth();
 
-  // if (cargando) return "cargando... ";
+  if (cargando) return "cargando... ";
 
   return (
     <>
       <Header />
 
-      {auth ? (
+      {auth._id ? (
         <main className="constainer mx-auto mt-10">
           <Outlet />
         </main>
